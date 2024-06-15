@@ -145,7 +145,6 @@ const burgerClick = () => {
 };
 
 window.addEventListener("mouseup", (event) => {
-  console.log(event.target);
   const mobileMenu = document.getElementById("mobile__menu");
   if (
     mobileMenu.classList.contains("mobile__list") &&
