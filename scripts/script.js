@@ -12,26 +12,26 @@ const projects = [
     title: "Twitter Clone",
     technology: "MERN Stack",
     description: "A full feature responsive social media application.",
-    img: "/images/twitter_clone.png",
+    img: "/portfolio/images/twitter_clone.png",
   },
   {
     title: "Budgeting App",
     technology: "Django",
     description:
       "A handy app for tracking and analyzing spendings and earnings.",
-    img: "/images/budgeting_app.png",
+    img: "/portfolio/images/budgeting_app.png",
   },
   {
     title: "Restaurant website",
     technology: "Designs",
     description: "A modern and intuitive design for a restaurant's website.",
-    img: "/images/restaurant_design.png",
+    img: "/portfolio/images/restaurant_design.png",
   },
   {
     title: "Inventory management app",
     technology: "Django",
     description: "Lightweight user-friendly app for inventory management.",
-    img: "/images/inventory_app.png",
+    img: "/portfolio/images/inventory_app.png",
   },
 ];
 
