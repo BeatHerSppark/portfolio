@@ -564,7 +564,6 @@ button:hover,
   button,
   .hero__buttons a {
     font-size: 12px;
-    width: 100%;
     margin-top: 2.5rem;
     border: none;
     color: white;
@@ -659,6 +658,7 @@ button:hover,
   .hero__buttons {
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 3rem;
   }
 
