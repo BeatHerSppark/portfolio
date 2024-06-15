@@ -132,3 +132,29 @@ const setProjects = (type) => {
     }
   }
 };
+
+const burgerClick = () => {
+  const mobileMenu = document.getElementById("mobile__menu");
+  if (mobileMenu.classList.contains("hidden")) {
+    mobileMenu.classList.remove("hidden");
+    mobileMenu.classList.add("mobile__list");
+  } else {
+    mobileMenu.classList.remove("mobile__list");
+    mobileMenu.classList.add("hidden");
+  }
+};
+
+window.addEventListener("mouseup", (event) => {
+  console.log(event.target);
+  const mobileMenu = document.getElementById("mobile__menu");
+  if (
+    mobileMenu.classList.contains("mobile__list") &&
+    !event.target.closest("#mobile__menu")
+  ) {
+    mobileMenu.classList.remove("mobile__list");
+    mobileMenu.classList.add("hidden");
+  }
+});
+
+const burger = document.getElementById("burger");
+burger.addEventListener("click", burgerClick);

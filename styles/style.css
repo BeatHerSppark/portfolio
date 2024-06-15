@@ -57,7 +57,9 @@ nav ul li a:hover {
   background-color: #32343a;
 }
 
-.nav__mobile {
+.nav__mobile,
+.mobile__list,
+.hidden {
   display: none;
 }
 
@@ -416,6 +418,7 @@ button:hover,
 @media only screen and (max-width: 1350px) {
   .main__container {
     padding: 5rem 5rem;
+    position: relative;
   }
   nav {
     display: none;
@@ -423,11 +426,35 @@ button:hover,
   .nav__mobile {
     display: block;
   }
+  .mobile__list {
+    display: block;
+    position: absolute;
+    top: 1.65%;
+    left: 8.75%;
+    list-style: none;
+    background-color: #24272c;
+    padding: 0;
+    text-align: center;
+    border-radius: 15px;
+  }
+  .mobile__list li {
+    padding: 1rem;
+    border-bottom: 1px solid #373c45;
+  }
+  .mobile__list a {
+    padding: 1rem 3rem;
+    font-size: 20px;
+    color: white;
+    text-decoration: none;
+  }
   .nav__mobile svg {
     width: 40px;
     background-color: #7733ff;
     border-radius: 50%;
     padding: 0.5rem;
+  }
+  .nav__mobile svg:hover {
+    cursor: pointer;
   }
   .blogs__container {
     display: flex;
@@ -581,6 +608,17 @@ button:hover,
 }
 
 @media only screen and (max-width: 950px) {
+  .mobile__list {
+    display: block;
+    position: absolute;
+    top: 1%;
+    left: 7%;
+    list-style: none;
+    background-color: #24272c;
+    padding: 0;
+    text-align: center;
+    border-radius: 15px;
+  }
   .main__container {
     padding: 2rem 3rem;
   }
