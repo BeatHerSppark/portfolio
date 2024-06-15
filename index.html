@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Petar Portfolio</title>
+    <link rel="stylesheet" href="styles/style.css" />
+  </head>
+  <body>
+    <div class="main__container">
+      <nav>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#blogs">Blogs</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="nav__mobile">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          stroke="#ffffff"
+        >
+          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g
+            id="SVGRepo_tracerCarrier"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></g>
+          <g id="SVGRepo_iconCarrier">
+            <path
+              d="M4 6H20M4 12H20M4 18H20"
+              stroke="#ffffff"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
+          </g>
+        </svg>
+      </div>
+      <section class="hero" id="hero">
+        <div>
+          <img src="images/hero.jpg" alt="hero picture" />
+        </div>
+        <div>
+          <h3 class="hero__hello">Hello!</h3>
+          <h1>I'm Petar Avramovikj</h1>
+          <h3 class="hero__job">Web Developer & <span>Designer</span></h3>
+          <p>
+            Transforming ideas into interactive digital experiences. Passionate
+            about creating sleek, responsive websites with a focus on
+            functionality and aesthetics. Let's build something amazing
+            together!
+          </p>
+          <div class="hero__buttons">
+            <a href="#projects">See my projects</a>
+            <a href="#contact">Contact me</a>
+          </div>
+        </div>
+      </section>
+      <section id="about">
+        <div class="about__svg-border">
+          <svg
+            width="300"
+            height="300"
+            viewBox="0 0 200 200"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g clip-path="url(#clip0_234_869)">
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M50 0H0V100H50C22.3858 100 0 122.386 0 150V200H100V150C100 177.614 122.386 200 150 200H200V100H150C177.614 100 200 77.6142 200 50V0H100V50C100 22.3858 77.6142 0 50 0ZM100 100H50C77.6142 100 100 122.386 100 150V100ZM100 100V50C100 77.6142 122.386 100 150 100H100Z"
+                fill="url(#paint0_linear_234_869)"
+              />
+            </g>
+            <defs>
+              <linearGradient
+                id="paint0_linear_234_869"
+                x1="100"
+                y1="0"
+                x2="100"
+                y2="200"
+                gradientUnits="userSpaceOnUse"
+              >
+                <stop stop-color="#232732" />
+                <stop offset="1" stop-color="#feda8e" />
+              </linearGradient>
+              <clipPath id="clip0_234_869">
+                <rect width="200" height="200" fill="white" />
+              </clipPath>
+            </defs>
+          </svg>
+        </div>
+        <div>
+          <h3>About me</h3>
+          <p>
+            A versatile and creative Web Developer and Designer, currently
+            pursing a Bachelor's Degree in Software Engineering and Information
+            Technologies. Skilled in both front-end and back-end technologies, I
+            strive to create seamless digital experiences that not only look
+            great but also perform exceptionally well. Outside of coding, I
+            enjoy exploring new tech trends, going to the gym, traveling with
+            friends and playing the piano!
+          </p>
+        </div>
+      </section>
+      <section id="projects">
+        <div class="projects__title">
+          <h3>Projects</h3>
+          <div class="projects__line"></div>
+        </div>
+        <div class="projects__buttons" id="projects__buttons">
+          <button onclick="handleProjClick(this)" class="button__active">
+            All
+          </button>
+          <button onclick="handleProjClick(this)">MERN Stack</button>
+          <button onclick="handleProjClick(this)">Django</button>
+          <button onclick="handleProjClick(this)">Designs</button>
+        </div>
+        <div id="projects__container"></div>
+      </section>
+
+      <section id="skills">
+        <div class="skills__title">
+          <h3>Skills</h3>
+          <div class="skills__line"></div>
+        </div>
+        <div class="skills__container">
+          <div>
+            <div class="skill">
+              <h5>Web Development</h5>
+              <p>
+                Plenty of experience and well-versed in the following
+                technologies:
+              </p>
+              <ul>
+                <li>HTML & CSS</li>
+                <li>JavaScript</li>
+                <li>ReactJS</li>
+                <li>Django</li>
+                <li>PHP</li>
+                <li>MongoDB & MySQL</li>
+              </ul>
+            </div>
+            <div class="skill">
+              <h5>Web Design</h5>
+              <p>
+                Skilled in creating visually appealing and user-friendly
+                designs, with expertise in:
+              </p>
+              <ul>
+                <li>Responsive Design</li>
+                <li>UI/UX Design</li>
+                <li>Figma</li>
+              </ul>
+            </div>
+          </div>
+          <div class="skills__image">
+            <img width="350" src="images/skills.png" alt="" />
+          </div>
+        </div>
+      </section>
+      <section id="blogs">
+        <div class="blog__title">
+          <h3>Blogs</h3>
+          <div class="blog__line"></div>
+        </div>
+        <div class="blogs__container">
+          <div class="blog__secondary">
+            <img src="images/blog1.png" alt="blog1" />
+            <h3>10 Things You Should Do To Improve Your Work Environment</h3>
+            <p>
+              Creating a positive and productive work environment is essential
+              for both personal well-being and professional success. Whether you
+              work in an office, at home, or...
+            </p>
+            <button>Read More</button>
+          </div>
+          <div class="blog__primary">
+            <img src="images/blog2.jpg" alt="blog2" />
+            <h3>
+              Create a Full-Stack Journal Web App Using ReactJS And Firebase
+            </h3>
+            <p>
+              Creating a full-stack journal web app is a great project for
+              developers looking to enhance their skills with modern web
+              technologies. In this tutorial, we'll build a simple yet
+              functional journal application using...
+            </p>
+            <button>Read More</button>
+          </div>
+          <div class="blog__secondary">
+            <img src="images/blog3.png" alt="blog3" />
+            <h3>Create a Web Scraping Tool using Python</h3>
+            <p>
+              Web scraping is a powerful technique used to extract data from
+              websites. It can be utilized for various purposes, such as data
+              analysis, content aggregation, and...
+            </p>
+            <button>Read More</button>
+          </div>
+        </div>
+      </section>
+      <section id="contact">
+        <div class="contact__title">
+          <h3>Contact Me</h3>
+          <div class="contact__line"></div>
+        </div>
+        <div class="contact__container">
+          <img src="images/hero.jpg" alt="" />
+          <form action="/" class="contact__form">
+            <input type="email" placeholder="Email" />
+            <textarea
+              name="message"
+              id="message"
+              placeholder="Message"
+            ></textarea>
+            <input type="submit" value="Send" />
+          </form>
+        </div>
+      </section>
+    </div>
+    <script src="scripts/script.js"></script>
+  </body>
+</html>
