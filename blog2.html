@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Create a Full-Stack Journal Web App Using ReactJS And Firebase
+    </title>
+    <link rel="stylesheet" href="styles/normalize.css" />
+    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="stylesheet" href="styles/blog.css" />
+  </head>
+  <body>
+    <div class="main__container">
+      <nav>
+        <ul>
+          <li><a href="index.html">Back</a></li>
+        </ul>
+      </nav>
+      <section id="blog">
+        <h1 class="title">
+          Create a Full-Stack Journal Web App Using ReactJS And Firebase
+        </h1>
+        <p class="description">
+          In this post you will learn how to implement a full-stack journal web
+          app with ReactJS and Firebase. By the end, you will have the knowledge
+          necessary to venture out and bring life to any ideas you'd like!
+        </p>
+        <p class="author">by <a href="index.html">Petar Avramovikj</a></p>
+        <img src="images/blog2.jpg" alt="" />
+        <div class="body">
+          <p>
+            Creating a full-stack journal web app is a great project for
+            developers looking to enhance their skills with modern web
+            technologies. In this tutorial, we'll build a simple yet functional
+            journal application using ReactJS for the front end and Firebase for
+            the back end. This app will allow users to sign up, log in, and
+            create, read, update, and delete journal entries.
+          </p>
+          <h3>Prerequisites</h3>
+          <p>
+            Before we begin, ensure you have the following installed on your
+            machine:
+          </p>
+          <ul>
+            <li>Node.js and npm</li>
+            <li>Firebase CLI</li>
+            <li>A code editor like VS Code</li>
+          </ul>
+          <h3>Step 1: Set Up Firebase</h3>
+          <ol>
+            <li>Create a Firebase Project:</li>
+            <ul>
+              <li>Go to the Firebase Console and click on "Add project".</li>
+              <li>Follow the prompts to create a new project.</li>
+            </ul>
+            <li>Enable Firestore:</li>
+            <ul>
+              <li>
+                In the Firebase Console, go to "Firestore Database" and click on
+                "Create database".
+              </li>
+              <li>Choose the appropriate settings and create the database.</li>
+            </ul>
+            <li>Enable Authentication:</li>
+            <ul>
+              <li>Navigate to "Authentication" in the Firebase Console.</li>
+              <li>
+                Click on "Set up sign-in method" and enable Email/Password
+                authentication.
+              </li>
+            </ul>
+            <li>Set Up Firebase in Your Project:</li>
+            <ul>
+              <li>
+                In the Firebase Console, go to Project Settings and find your
+                Firebase SDK configuration.
+              </li>
+              <li>Copy the Firebase config object.</li>
+            </ul>
+          </ol>
+          <h3>Step 2: Set Up the React Project</h3>
+          <ol>
+            <li>Create a New React App:</li>
+            <pre>
+npx create-react-app journal-app
+<span>cd</span> journal-app</pre
+            >
+            <li>Install Firebase:</li>
+            <pre>npm install firebase</pre>
+            <li>Configure Firebase:</li>
+            <p>
+              Create a <span>firebase.js</span> file in the
+              <span>src</span> directory and add the Firebase configuration:
+            </p>
+            <pre><span>// src/firebase.js</span>
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/firestore';
+
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_AUTH_DOMAIN",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_STORAGE_BUCKET",
+  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+  appId: "YOUR_APP_ID"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const auth = firebase.auth();
+const firestore = firebase.firestore();
+
+export { auth, firestore };</pre
+            >
+          </ol>
+          <h3>Step 3: Implement Authentication</h3>
+          <ol>
+            <li>Create Authentication Components:</li>
+            <p>
+              Create <span>SignUp.js</span>, <span>Login.js</span>, and
+              <span>Logout.js</span> components in the
+              <span>src/components</span> directory.
+            </p>
+            <pre><span>// src/components/SignUp.js</span>
+import React, { useState } from 'react';
+import { auth } from '../firebase';
+
+const SignUp = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSignUp = async (e) => {
+    e.preventDefault();
+    try {
+      await auth.createUserWithEmailAndPassword(email, password);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  return &#40;
+    &#60;form onSubmit={handleSignUp}>
+    &#60;input
+        type="email"
+        value={email}
+        onChange={(e) &#61;> setEmail(e.target.value)}
+        placeholder="Email"
+      />
+      &#60;input
+        type="password"
+        value={password}
+        onChange=&#123;(e) &#61;> setPassword(e.target.value)&#125;
+        placeholder="Password"
+      />
+      &#60;button type="submit">Sign Up</button>
+      &#60;/form>
+    &#41;;
+  &#125;;
+
+export default SignUp;</pre>
+<pre><span>// src/components/Login.js</span>
+import React, { useState } from 'react';
+import { auth } from '../firebase';
+
+const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  return (
+    &#60;form onSubmit={handleLogin}>
+    &#60;input
+        type="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        placeholder="Email"
+      />
+      &#60;input
+        type="password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        placeholder="Password"
+      />
+      &#60;button type="submit">Login</button>
+      &#60;/form>
+  );
+};
+
+export default Login;</pre>
+<pre><span>// src/components/Logout.js</span>
+import React from 'react';
+import { auth } from '../firebase';
+
+const Logout = () => {
+  const handleLogout = async () => {
+    await auth.signOut();
+  };
+
+  return &#60;button onClick={handleLogout}>Logout</button>;
+};
+
+export default Logout;</pre>
+          </ol>
+          <h3>Step 4: Create Journal Functionality</h3>
+          <ol>
+            <li>Create Journal Entry Components:</li>
+            <p>Create <span>CreateEntry.js</span>, <span>EntryList.js</span>, and <span>Entry.js</span> components in the <span>src/components</span> directory.</p>
+<pre><span>// src/components/CreateEntry.js</span>
+import React, { useState } from 'react';
+import { firestore, auth } from '../firebase';
+
+const CreateEntry = () => {
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const { uid } = auth.currentUser;
+    await firestore.collection('entries').add({
+      title,
+      content,
+      uid,
+      createdAt: new Date()
+    });
+    setTitle('');
+    setContent('');
+  };
+
+  return (
+    &#60;form onSubmit={handleSubmit}>
+    &#60;input
+        type="text"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        placeholder="Title"
+      />
+      &#60;textarea
+        value={content}
+        onChange={(e) => setContent(e.target.value)}
+        placeholder="Content"
+      >&#60;/textarea>
+      &#60;button type="submit">Add Entry</button>
+      &#60;/form>
+  );
+};
+
+export default CreateEntry;</pre>
+<pre><span>// src/components/EntryList.js</span>
+import React, { useEffect, useState } from 'react';
+import { firestore, auth } from '../firebase';
+import Entry from './Entry';
+
+const EntryList = () => {
+  const [entries, setEntries] = useState([]);
+
+  useEffect(() => {
+    const { uid } = auth.currentUser;
+    const unsubscribe = firestore
+      .collection('entries')
+      .where('uid', '==', uid)
+      .orderBy('createdAt', 'desc')
+      .onSnapshot((snapshot) => {
+        const entriesData = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data()
+        }));
+        setEntries(entriesData);
+      });
+
+    return unsubscribe;
+  }, []);
+
+  return (
+    &#60;div>
+      {entries.map((entry) => (
+        &#60;Entry key={entry.id} entry={entry} />
+      ))}
+      &#60;/div>
+  );
+};
+
+export default EntryList;</pre>
+<pre><span>// src/components/Entry.js</span>
+import React, { useState } from 'react';
+import { firestore } from '../firebase';
+
+const Entry = ({ entry }) => {
+  const [isEditing, setIsEditing] = useState(false);
+  const [title, setTitle] = useState(entry.title);
+  const [content, setContent] = useState(entry.content);
+
+  const handleUpdate = async () => {
+    await firestore.collection('entries').doc(entry.id).update({
+      title,
+      content
+    });
+    setIsEditing(false);
+  };
+
+  const handleDelete = async () => {
+    await firestore.collection('entries').doc(entry.id).delete();
+  };
+
+  return (
+    &#60;div>
+      {isEditing ? (
+        &#60;>
+        &#60;input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+          &#60;textarea
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+          >&#60;/textarea>
+          &#60;button onClick={handleUpdate}>Update</button>
+          &#60;button onClick={() => setIsEditing(false)}>Cancel</button>
+          &#60;/>
+      ) : (
+        &#60;>
+        &#60;h3>{entry.title}</h3>
+        &#60;p>{entry.content}</p>
+        &#60;button onClick={() => setIsEditing(true)}>Edit</button>
+        &#60;button onClick={handleDelete}>Delete</button>
+        &#60;/>
+      )}
+      &#60;/div>
+  );
+};
+
+export default Entry;</pre>
+          </ol>
+          <h3>Step 5: Integrate Components in the App</h3>
+          <ol>
+            <li>Update <span>App.js</span>:</li>
+            <p>Modify <span>App.js</span> to include routes and authentication handling</p>
+<pre><span>// src/App.js</span>
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { auth } from './firebase';
+import SignUp from './components/SignUp';
+import Login from './components/Login';
+import Logout from './components/Logout';
+import CreateEntry from './components/CreateEntry';
+import EntryList from './components/EntryList';
+
+const App = () => {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setUser(user);
+    });
+
+    return unsubscribe;
+  }, []);
+
+  return (
+    &#60;Router>
+    &#60;div>
+    &#60;nav>
+          {user ? (
+            &#60;>
+              &#60;Logout />
+              &#60;p>Welcome, {user.email}&#60;/p>
+            &#60;/>
+          ) : (
+            &#60;>
+              &#60;a href="/signup">Sign Up&#60;/a>
+              &#60;a href="/login">Login&#60;/a>
+            &#60;/>
+          )}
+    &#60;/nav>
+          &#60;Switch>
+          &#60;Route path="/signup">
+          &#60;SignUp />
+          &#60;/Route>
+          &#60;Route path="/login">
+          &#60;Login />
+          &#60;/Route>
+          &#60;Route path="/">
+            {user ? (
+              &#60;>
+              &#60;CreateEntry />
+              &#60;EntryList />
+              &#60;/>
+            ) : (
+              &#60;p>Please log in or sign up.</p>
+            )}
+            &#60;/Route>
+            &#60;/Switch>
+            &#60;/div>
+            &#60;/Router>
+  );
+};
+
+export default App;</pre>
+          </ol>
+          <h3>Step 6: Style Your App</h3>
+          <ol>
+          <li>Add Basic Styling:</li>
+          <p>Create a <span>src/App.css</span> file and add some basic styles.</p>
+<pre><span>/* src/App.css */</span>
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+nav {
+  background-color: #333;
+  color: #fff;
+  padding: 1em;
+  display: flex;
+  justify-content: space-between;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 1em;
+}
+
+form {
+  margin: 2em;
+  display: flex;
+  flex-direction: column;
+}
+
+input, textarea {
+  margin-bottom: 1em;
+  padding: 0.5em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  padding: 0.5em;
+  border: none;
+  background-color: #333;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #555;
+}
+
+.entry {
+  background-color: #fff;
+  margin: 1em;
+  padding: 1em;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}</pre>
+<li>Import the Styles</li>
+<p>Make sure to import the CSS file in your <span>src/index.js</span>:</p>
+<pre><span>// src/index.js</span>
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+
+ReactDOM.render(
+  &#60;React.StrictMode>
+  &#60;App />
+  &#60;/React.StrictMode>,
+  document.getElementById('root')
+);</pre>
+</ol>
+<h3>Conclusion</h3>
+<p>Congratulations! You've successfully created a full-stack journal web app using ReactJS and Firebase. This project has introduced you to Firebase authentication, Firestore for database management, and building a responsive UI with React. Feel free to expand on this project by adding more features such as search functionality, user profiles, or even integrating with other services.</p>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create a Web Scraping Tool using Python</title>
+    <link rel="stylesheet" href="styles/normalize.css" />
+    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="stylesheet" href="styles/blog.css" />
+  </head>
+  <body>
+    <div class="main__container">
+      <nav>
+        <ul>
+          <li><a href="index.html">Back</a></li>
+        </ul>
+      </nav>
+      <section id="blog">
+        <h1 class="title">Create a Web Scraping Tool using Python</h1>
+        <p class="description">
+          Web Scraping is a fundamental skill that any developer should have
+          under their belt. It is used every day by countless companies for
+          gathering data, data mining, indexing, monitoring prices, product
+          review and so much more!
+        </p>
+        <p class="author">by <a href="index.html">Petar Avramovikj</a></p>
+        <img src="images/blog3.png" alt="" />
+        <div class="body">
+          <p>
+            Web scraping is a powerful technique used to extract data from
+            websites. It can be utilized for various purposes, such as data
+            analysis, content aggregation, and monitoring. In this blog post, we
+            will guide you through the process of creating a web scraping tool
+            using Python. We will use popular libraries like Beautiful Soup and
+            Requests to build a simple yet effective scraper.
+          </p>
+          <h3>Prerequisites</h3>
+          <p>
+            Before we begin, ensure you have Python installed on your machine.
+            You can download it from
+            <a href="python.org" target="_blank">python.org</a>. Additionally,
+            you'll need to install the following Python libraries:
+          </p>
+          <ul>
+            <li>
+              <span>Requests</span>: To make HTTP requests and retrieve web
+              pages.
+            </li>
+            <li>
+              <span>Beautiful Soup</span>: To parse and extract data from HTML
+              and XML documents.
+            </li>
+          </ul>
+          <p>You can install these libraries using pip:</p>
+          <pre>pip install requests beautifulsoup4</pre>
+
+          <h3>Step 1: Setting Up the Project</h3>
+          <ol>
+            <li>Create a Project Directory:</li>
+            <p>Create a directory for your project and navigate into it:</p>
+            <pre>
+mkdir web_scraper
+cd web_scraper</pre
+            >
+            <li>Create a Python File:</li>
+            <p>
+              Create a Python file, <span>scraper.py</span>, where we will write
+              our web scraping code.
+            </p>
+          </ol>
+          <h3>Step 2: Make HTTP Requests</h3>
+          <p>
+            The first step in web scraping is to fetch the webpage you want to
+            scrape. We'll use the Requests library for this.
+          </p>
+          <ol>
+            <li>Import the Required Libraries:</li>
+            <pre>
+import requests
+from bs4 import BeautifulSoup</pre
+            >
+            <li>Make an HTTP Request:</li>
+            <pre>
+url = 'https://example.com'
+response = requests.get(url)
+
+if response.status_code == 200:
+    print('Successfully fetched the webpage')
+else:
+    print('Failed to retrieve the webpage')</pre
+            >
+            <p>
+              Replace <span>'https://example.com'</span> with the URL of the
+              website you want to scrape.
+            </p>
+          </ol>
+          <h3>Step 3: Parse the Webpage Content</h3>
+          <p>
+            Once we have the HTML content of the webpage, we need to parse it to
+            extract the data we need. Beautiful Soup is perfect for this task.
+          </p>
+          <ol>
+            <li>Parse the HTML:</li>
+            <pre>soup = BeautifulSoup(response.content, 'html.parser')</pre>
+            <li>Inspect the HTML Structure:</li>
+            <p>
+              Use your browser's developer tools to inspect the HTML structure
+              of the webpage and identify the elements you want to extract. For
+              example, if you want to scrape the titles of articles from a blog,
+              you need to find the HTML tags and classes/IDs that contain these
+              titles.
+            </p>
+          </ol>
+          <h3>Step 4: Extract Data</h3>
+          <p>
+            Now that we have parsed the HTML, we can use Beautiful Soup to find
+            and extract the data.
+          </p>
+          <ol>
+            <li>Find elements:</li>
+            <pre>
+titles = soup.find_all('h2', class_='post-title')
+
+for title in titles:
+    print(title.get_text())</pre
+            >
+            <p>
+              In this example, we assume that the titles of the articles are
+              within <span>&#60;h2></span> tags with the class post-title.
+              Adjust the tag and class names according to the actual HTML
+              structure of the webpage you are scraping.
+            </p>
+          </ol>
+          <h3>Step 5: Handle Pagination (Optional)</h3>
+          <p>
+            Many websites have multiple pages of content. To scrape data from
+            all pages, you need to handle pagination.
+          </p>
+          <ol>
+            <li>Identify the Next Page Link:</li>
+            <p>
+              Inspect the pagination controls on the webpage to identify how the
+              next page is linked. Typically, it's a link with a specific class
+              or ID.
+            </p>
+            <li>Scrape Multiple Pages:</li>
+            <pre>
+while True:
+titles = soup.find_all('h2', class_='post-title')
+
+for title in titles:
+    print(title.get_text())
+
+next_page = soup.find('a', class_='next')
+
+if next_page:
+    url = next_page['href']
+    response = requests.get(url)
+    soup = BeautifulSoup(response.content, 'html.parser')
+else:
+    break</pre
+            >
+            <p>
+              In this example, we continuously fetch and parse pages until there
+              are no more pages to scrape.
+            </p>
+          </ol>
+          <h3>Step 6: Save the Data</h3>
+          <p>
+            Finally, you might want to save the scraped data for further
+            analysis. You can save the data to a CSV file using the
+            <span>csv</span> module.
+          </p>
+          <pre>import csv</pre>
+          <h3>Step 7: Putting It All Together</h3>
+          <p>
+            Now that we have covered all the individual steps, let's put them
+            all together in a complete script.
+          </p>
+          <pre>
+import requests
+from bs4 import BeautifulSoup
+import csv
+
+def fetch_page(url):
+    response = requests.get(url)
+    if response.status_code == 200:
+        return response.content
+    else:
+        return None
+
+def parse_page(content):
+    soup = BeautifulSoup(content, 'html.parser')
+    titles = soup.find_all('h2', class_='post-title')
+    return [title.get_text() for title in titles], soup
+
+def get_next_page(soup):
+    next_page = soup.find('a', class_='next')
+    if next_page:
+        return next_page['href']
+    else:
+        return None
+
+def scrape_website(base_url):
+    url = base_url
+    with open('scraped_data.csv', 'w', newline='', encoding='utf-8') as file:
+        writer = csv.writer(file)
+        writer.writerow(['Title'])
+
+        while url:
+            content = fetch_page(url)
+            if content:
+                titles, soup = parse_page(content)
+                for title in titles:
+                    writer.writerow([title])
+                url = get_next_page(soup)
+            else:
+                print('Failed to retrieve the webpage')
+                break
+
+if __name__ == '__main__':
+    base_url = 'https://example.com'
+    scrape_website(base_url)</pre
+          >
+          <h3>Conclusion</h3>
+          <p>
+            You've successfully created a web scraping tool using Python! This
+            basic scraper can be customized and expanded to suit various web
+            scraping needs. Here are a few tips for further development:
+          </p>
+          <ul>
+            <li>
+              Handle Different Structures: Adapt the parsing logic to handle
+              different HTML structures.
+            </li>
+            <li>
+              Error Handling: Add more robust error handling to deal with
+              network issues, invalid URLs, or changes in the website’s
+              structure.
+            </li>
+            <li>
+              Respect Robots.txt: Always check the website’s robots.txt file to
+              ensure you are allowed to scrape it.
+            </li>
+            <li>
+              Politeness: Use time delays between requests to avoid overloading
+              the server.
+            </li>
+          </ul>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

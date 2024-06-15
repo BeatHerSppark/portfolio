@@ -1,0 +1,114 @@
+@media only screen and (max-width: 1350px) {
+  nav {
+    display: block;
+  }
+  nav ul li a {
+    width: 100%;
+    font-size: 13px;
+  }
+}
+nav {
+  margin-left: 10rem;
+}
+
+#blog {
+  color: white;
+  width: 45rem;
+  margin-left: 10rem;
+}
+.title {
+  font-size: 42px;
+  font-weight: 500;
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
+}
+.description,
+.author {
+  font-size: 13px;
+  color: rgb(175, 173, 173);
+  width: 30rem;
+  line-height: 18px;
+  margin-bottom: 1.25rem;
+}
+.author {
+  color: white;
+  margin-bottom: 2rem;
+}
+.author a {
+  color: rgb(216, 196, 255);
+}
+img {
+  border-radius: 15px;
+  width: 100%;
+  margin-bottom: 2.5rem;
+}
+.body p {
+  font-weight: 300;
+  line-height: 25px;
+}
+.body a {
+  color: rgb(216, 196, 255);
+  text-decoration: none;
+}
+.body a:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.5rem;
+}
+.body span {
+  color: rgb(216, 196, 255);
+  font-weight: 400;
+}
+.body h3 {
+  font-size: 25px;
+  margin-top: 3rem;
+  margin-bottom: 0.75rem;
+  font-weight: 500;
+}
+.body ul {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.body ul li {
+  font-weight: 300;
+  line-height: 25px;
+}
+.body ol {
+  margin-top: 2rem;
+}
+.body ol > li {
+  font-weight: 500;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.body ol ul {
+  margin-bottom: 1.5rem;
+}
+pre span {
+  color: rgb(216, 196, 255);
+  font-weight: 400;
+}
+pre {
+  overflow-x: auto;
+  margin-top: 1rem;
+  margin-bottom: 2.5rem;
+  line-height: 25px;
+  background-color: #24272c;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 10px 10px 15px -10px rgba(20, 22, 24, 0.75) inset,
+    -10px -10px 15px -10px rgba(57, 63, 80, 0.75) inset;
+}
+
+@media only screen and (max-width: 1200px) {
+  #blog {
+    width: 100%;
+    margin: 0;
+  }
+  nav {
+    margin: 0;
+  }
+  .description,
+  .author {
+    width: 100%;
+  }
+}
