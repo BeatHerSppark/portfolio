@@ -201,11 +201,16 @@ button:hover,
   border-radius: 8px;
 }
 
+.projects__title p {
+  margin-top: 4rem;
+  color: rgb(211, 211, 211);
+}
+
 .projects__buttons {
   display: flex;
   justify-content: space-between;
   gap: 3rem;
-  margin-top: 3rem;
+  margin-top: 0rem;
 }
 
 .button__active {
@@ -272,18 +277,37 @@ button:hover,
 .skills__container {
   display: flex;
   margin-top: 5rem;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: center;
   align-items: center;
+  gap: 2rem;
   color: white;
   font-weight: 200;
 }
 .skill {
-  margin-bottom: 3rem;
+  aspect-ratio: 1 / 1;
+  width: 12.5rem;
   padding: 2.5rem;
   border-radius: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   box-shadow: -20px -20px 15px -12px rgba(57, 63, 80, 0.75) inset,
     20px 20px 15px -10px rgba(26, 28, 39, 0.75) inset;
 }
+
+.highlight {
+  color: rgb(182, 145, 255);
+  font-weight: 300;
+}
+
+.skill svg {
+  width: 40px;
+  margin-bottom: 1rem;
+}
+
 .skill h5 {
   font-size: 20px;
   font-weight: 500;
@@ -293,12 +317,15 @@ button:hover,
 .skill p {
   font-size: 14px;
   color: rgb(211, 211, 211);
-  width: 400px;
   line-height: 20px;
   margin-bottom: 1rem;
 }
+.skill ul {
+  padding: 0;
+  list-style: none;
+}
 .skill ul li {
-  line-height: 25px;
+  font-size: 14px;
 }
 .skills__image {
   text-align: center;
@@ -376,23 +403,21 @@ button:hover,
 .contact__title h3 {
   text-align: right;
 }
+.contact__title p {
+  margin-top: 4rem;
+  color: rgb(194, 194, 194);
+  font-size: 18px;
+}
 .contact__container {
   display: flex;
-  margin-top: 6rem;
-  justify-content: center;
-  align-items: flex-start;
+  margin-top: 1.5rem;
+  justify-content: space-between;
   gap: 5rem;
-}
-.contact__container img {
-  width: 265px;
-  border-radius: 20px;
-  box-shadow: 2px 2px 20px 10px rgba(19, 21, 29, 0.75),
-    -2px -2px 20px 5px rgba(75, 83, 103, 0.75);
 }
 .contact__form {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 26rem;
 }
 .contact__form textarea,
 .contact__form input[type="email"] {
@@ -418,8 +443,52 @@ button:hover,
   color: white;
   box-shadow: 2px 2px 20px 10px rgba(19, 21, 29, 0.75),
     -2px -2px 20px 5px rgba(75, 83, 103, 0.75);
-  width: 25%;
+  padding: 1rem 2rem;
   align-self: center;
+}
+
+.right {
+  color: rgb(194, 194, 194);
+  font-size: 18px;
+}
+
+.socials {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.socials svg {
+  width: 40px;
+  opacity: 0.8;
+}
+.socials svg:hover {
+  cursor: pointer;
+}
+
+/* FOOTER */
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 7rem;
+}
+footer a{
+  display: inline-block;
+}
+footer a svg {
+  width: 40px;
+  background-color: #7733ff;
+  padding: 0.5rem;
+  border-radius: 50%;
+}
+footer .socials {
+  margin: 0;
+  justify-content: flex-start;
+}
+footer p {
+  color: rgb(144, 144, 144);;
 }
 
 @media only screen and (max-width: 1350px) {
@@ -541,12 +610,6 @@ button:hover,
 }
 
 @media only screen and (max-width: 1120px) {
-  .skills__container {
-    flex-direction: column;
-  }
-  .skills__container img {
-    width: 40vw;
-  }
   .projects__title,
   .skills__title,
   .blog__title,
@@ -595,12 +658,6 @@ button:hover,
   .projects__buttons button {
     margin-top: 0;
   }
-  .skill {
-    width: 50vw;
-  }
-  .skill p {
-    width: inherit;
-  }
   .blog__primary,
   .blog__secondary {
     width: 60vw;
@@ -610,6 +667,12 @@ button:hover,
   }
   .blogs__container p {
     font-size: 15px;
+  }
+}
+
+@media only screen and (max-width: 1050px) {
+  footer .socials {
+    display: none;
   }
 }
 
@@ -679,12 +742,18 @@ button:hover,
     width: 250px;
     margin: 0 auto;
   }
+  .contact__title p {
+    text-align: center;
+  }
   .contact__container {
     flex-direction: column;
     justify-content: center;
     align-items: center;
   }
-  .contact__container img {
-    width: 40vw;
+  .contact__form {
+    width: 85%;
+  }
+  .socials {
+    justify-content: center;
   }
 }
